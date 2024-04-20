@@ -1,0 +1,23 @@
+{
+  "name": "LINE Bot 帥狗",
+  "description": "帥狗就是帥",
+  "repository": "https://github.com/danny021406/LineBot",
+  "keywords": [
+    "Line",
+    "go"
+  ],
+  "env": {
+    "ChatGptToken": {
+      "description": "ChatGPT Access Token",
+      "required": true
+    },
+    "ChannelAccessToken": {
+      "description": "Channel Access Token",
+      "required": true
+    },
+    "ChannelSecret": {
+      "description": "Channel Secret",
+      "required": true
+    }
+  }
+}
