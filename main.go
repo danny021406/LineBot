@@ -17,6 +17,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/line/line-bot-sdk-go/v7/linebot"
 	"github.com/sashabaranov/go-openai"
@@ -44,4 +45,10 @@ func main() {
 	http.HandleFunc("/callback", callbackHandler)
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
+
+	// to keep Render server alive
+	for {
+		time.Sleep(13 * time.Minute)
+		log.Println("Still alive")
+	}
 }
