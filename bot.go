@@ -129,8 +129,9 @@ func handleReply(event *linebot.Event, askStr string) {
 
 func handleDraw(event *linebot.Event, message string) {
 	message = strings.TrimPrefix(message, "帥狗畫")
+	prompt := fmt.Sprintf("用簡單的線條，童趣且富有色彩的畫出`%s`", message)
 
-	if reply, err := gptImageCreate(message); err != nil {
+	if reply, err := gptImageCreate(prompt); err != nil {
 		if _, err := bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("帥狗畫不出來")).Do(); err != nil {
 			log.Print(err)
 		}
