@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"io"
 	"net/http"
 	"strings"
 	"time"
@@ -59,11 +60,16 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			case *linebot.ImageMessage:
 				fmt.Printf("%+v\n", message)
-				content, err := blob.GetMessageContent(message.Id)
+				content, err := blob.GetMessageContent(message.ID)
 				if err != nil {
 					log.Println("Got GetMessageContent err:", err)
 				}
-				handleReplyImage(event, content)
+				defer content.Body.Close()
+				data, err := io.ReadAll(content.Body)
+				if err != nil {
+					log.Fatal(err)
+				}
+				handleReplyImage(event, string(data))
 			}
 		}
 	}
