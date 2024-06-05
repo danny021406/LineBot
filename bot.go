@@ -55,6 +55,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					handleStoreMsg(event, outStickerResult)
 				}
 			}
+			case *linebot.ImageMessage:
+				handleReplyImage(event, message.OriginalContentURL)
+
 		}
 	}
 }
@@ -111,6 +114,25 @@ func handleReply(event *linebot.Event, askStr string) {
 
 	// prompt
 	oriContext = fmt.Sprintf("你是隻有著帥氣假髮的哈吧狗，大家都叫你帥狗，我是`%s`, 我想跟你說：`%s`,你在一個聊天的群組裡，請在群組中回覆我一些話，簡短並帶點幽默，語氣可以隨便一點，控制在兩句內，這是這個群組目前的對話內容：`%s`，你是群組中的帥狗，直接回覆你要說的就好不用加上自己的名稱", userName, askStr, oriContext)
+	reply := gptGPT3CompleteContext(oriContext)
+	log.Print(oriContext)
+
+	m := MsgDetail{
+		MsgText:  reply,
+		UserName: "帥狗",
+		Time:     time.Now(),
+	}
+
+	summaryQueue.AppendGroupInfo(getGroupID(event), m)
+
+	if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(reply)).Do(); err != nil {
+		log.Print(err)
+	}
+}
+
+func handleReplyImage(event *linebot.Event, image string) {
+	// prompt
+	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱顫他長得很好看：", image)
 	reply := gptGPT3CompleteContext(oriContext)
 	log.Print(oriContext)
 
