@@ -23,7 +23,7 @@ func gptCompleteContext(content string, model string) (ret string) {
 		Messages: []openai.ChatCompletionMessage{{
 			Role:    openai.ChatMessageRoleUser,
 			MultiContent: []openai.ChatMessagePart{{
-				Type:    openai.ChatMessagePart,
+				Type:    openai.ChatMessagePartTypeImageURL,
 				ImageURL: &openai.ChatMessageImageURL{
 					URL: content,
 				},
