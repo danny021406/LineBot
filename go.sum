@@ -43,6 +43,8 @@ github.com/line/line-bot-sdk-go/v7 v7.20.0 h1:thFPRAHggENIY3+Kn1Er1obn5phrjFV1H6
 github.com/line/line-bot-sdk-go/v7 v7.20.0/go.mod h1:idpoxOZgtSd8JyhctMMpwg5LNgRAIL/QIxa5S0DXcMg=
 github.com/line/line-bot-sdk-go/v7 v7.21.0 h1:eeYMuAwaDV5DZNTRqDipNhzjT51HwEcM1PRPG+cqh4Y=
 github.com/line/line-bot-sdk-go/v7 v7.21.0/go.mod h1:idpoxOZgtSd8JyhctMMpwg5LNgRAIL/QIxa5S0DXcMg=
+github.com/line/line-bot-sdk-go/v8 v8.6.0 h1:tuWf0/gGyEDlciYW8vM/+kmVhlLFkCIdmqbU5bKwL1o=
+github.com/line/line-bot-sdk-go/v8 v8.6.0/go.mod h1:n9Ly8OHM6xCeQktLzRpQHe/yBda95kFgmQUefUQeFCs=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e h1:fD57ERR4JtEqsWbfPhv4DMiApHyliiK5xCTNVSPiaAs=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/nxadm/tail v1.4.4 h1:DQuhQpB1tVlglWS2hLQ5OV6B5r8aGxSrPc5Qo6uTN78=

@@ -7,8 +7,11 @@ import (
 	"strings"
 	"time"
 
+	"github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
 	"github.com/line/line-bot-sdk-go/v7/linebot"
 )
+
+var blob *messaging_api.MessagingApiBlobAPI
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
@@ -56,7 +59,11 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			case *linebot.ImageMessage:
 				fmt.Printf("%+v\n", message)
-				handleReplyImage(event, message.PreviewImageURL)
+				content, err := blob.GetMessageContent(message.Id)
+				if err != nil {
+					log.Println("Got GetMessageContent err:", err)
+				}
+				handleReplyImage(event, content)
 			}
 		}
 	}
