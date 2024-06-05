@@ -60,7 +60,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			case *linebot.ImageMessage:
 				fmt.Printf("%+v\n", message)
-				content, err := linebot.GetMessageContent(message.ID)
+				content, err := blob.GetMessageContent(message.ID)
 				if err != nil {
 					log.Println("Got GetMessageContent err:", err)
 				}

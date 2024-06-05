@@ -19,6 +19,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
 	"github.com/line/line-bot-sdk-go/v7/linebot"
 	"github.com/sashabaranov/go-openai"
 )
@@ -34,6 +35,12 @@ func main() {
 
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
+
+	channelToken = os.Getenv("ChannelAccessToken")
+	blob, err = messaging_api.NewMessagingApiBlobAPI(channelToken)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	port := os.Getenv("PORT")
 	apiKey := os.Getenv("ChatGptToken")
