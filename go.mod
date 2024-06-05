@@ -3,7 +3,7 @@ module github.com/danny021406/LineBot/tree/main
 // +heroku goVersion go1.20
 go 1.20
 
-require github.com/line/line-bot-sdk-go/v7 v7.20.0
+require github.com/line/line-bot-sdk-go/v7 v7.21.0
 
 require (
 	github.com/go-pg/pg/v10 v10.11.0
