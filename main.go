@@ -36,7 +36,7 @@ func main() {
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
 
-	channelToken = os.Getenv("ChannelAccessToken")
+	channelToken := os.Getenv("ChannelAccessToken")
 	blob, err = messaging_api.NewMessagingApiBlobAPI(channelToken)
 	if err != nil {
 		log.Fatal(err)
