@@ -135,7 +135,7 @@ func handleReplyImage(event *linebot.Event, image string) {
 	reply := gptGPT3CompleteContext(oriContext)
 	log.Print(oriContext)
 
-	if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(reply)).Do(); err != nil {
+	if _, err := bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(reply)).Do(); err != nil {
 		log.Print(err)
 	}
 }
