@@ -30,7 +30,7 @@ func gptCompleteContext(content string, url string, model string) (ret string) {
 			MultiContent: []openai.ChatMessagePart{{
 				Type:    openai.ChatMessagePartTypeImageURL,
 				ImageURL: &openai.ChatMessageImageURL{
-					URL: url,
+					URL: "data:image/jpeg;base64," + url,
 				},
 			}, {
 				Type:    openai.ChatMessagePartTypeText,
