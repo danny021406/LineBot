@@ -34,7 +34,7 @@ func gptCompleteContext(content string, url string, model string) (ret string) {
 				},
 			}, {
 				Type:    openai.ChatMessagePartTypeText,
-				Content: content,
+				Text: 	 content,
 			}},
 		}},
 	}
