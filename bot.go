@@ -131,9 +131,9 @@ func handleReply(event *linebot.Event, askStr string) {
 
 func handleReplyImage(event *linebot.Event, image string) {
 	// prompt
-	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱讚他長得很好看：", image)
-	reply := gptGPT3CompleteContext(oriContext)
-	log.Print(oriContext)
+	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱讚他長得很好看：")
+	reply := gptGPT3CompleteContextImage(oriContext, image)
+	log.Print(oriContext, image)
 
 	if _, err := bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(reply)).Do(); err != nil {
 		log.Print(err)
