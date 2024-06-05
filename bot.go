@@ -54,10 +54,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					outStickerResult := fmt.Sprintf("貼圖訊息: %s ", kw)
 					handleStoreMsg(event, outStickerResult)
 				}
-			}
 			case *linebot.ImageMessage:
 				handleReplyImage(event, message.OriginalContentURL)
-
+			}
 		}
 	}
 }
@@ -132,17 +131,9 @@ func handleReply(event *linebot.Event, askStr string) {
 
 func handleReplyImage(event *linebot.Event, image string) {
 	// prompt
-	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱顫他長得很好看：", image)
+	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱讚他長得很好看：", image)
 	reply := gptGPT3CompleteContext(oriContext)
 	log.Print(oriContext)
-
-	m := MsgDetail{
-		MsgText:  reply,
-		UserName: "帥狗",
-		Time:     time.Now(),
-	}
-
-	summaryQueue.AppendGroupInfo(getGroupID(event), m)
 
 	if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(reply)).Do(); err != nil {
 		log.Print(err)

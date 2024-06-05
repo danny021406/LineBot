@@ -10,7 +10,7 @@ import (
 
 func gptGPT3CompleteContext(content string) (ret string) {
 	fmt.Printf("Using GPT3\n")
-	return gptCompleteContext(content, openai.GPT3Dot5Turbo)
+	return gptCompleteContext(content, openai.GPT4VisionPreview)
 }
 
 func gptCompleteContext(content string, model string) (ret string) {
@@ -22,7 +22,12 @@ func gptCompleteContext(content string, model string) (ret string) {
 		Model: model,
 		Messages: []openai.ChatCompletionMessage{{
 			Role:    openai.ChatMessageRoleUser,
-			Content: content,
+			MultiContent: []ChatMessagePart{{
+				Type:    openai.ChatMessagePart,
+				ImageURL: &openai.ChatMessageImageURL{
+					URL: content,
+				},
+			}},
 		}},
 	}
 
