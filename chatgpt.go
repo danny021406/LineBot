@@ -10,10 +10,15 @@ import (
 
 func gptGPT3CompleteContext(content string) (ret string) {
 	fmt.Printf("Using GPT3\n")
-	return gptCompleteContext(content, openai.GPT4VisionPreview)
+	return ""
 }
 
-func gptCompleteContext(content string, model string) (ret string) {
+func gptGPT3CompleteContextImage(content string, url string) (ret string) {
+	fmt.Printf("Using GPT3\n")
+	return gptCompleteContext(content, url, openai.GPT4VisionPreview)
+}
+
+func gptCompleteContext(content string, url string, model string) (ret string) {
 	ctx := context.Background()
 
 	// See: https://platform.openai.com/docs/guides/chat
@@ -25,8 +30,11 @@ func gptCompleteContext(content string, model string) (ret string) {
 			MultiContent: []openai.ChatMessagePart{{
 				Type:    openai.ChatMessagePartTypeImageURL,
 				ImageURL: &openai.ChatMessageImageURL{
-					URL: content,
+					URL: url,
 				},
+			}, {
+				Type:    openai.ChatMessagePartTypeText,
+				Content: content,
 			}},
 		}},
 	}
