@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	"encoding/base64"
 
 	"github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
 	"github.com/line/line-bot-sdk-go/v7/linebot"
@@ -69,7 +70,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				if err != nil {
 					log.Fatal(err)
 				}
-				handleReplyImage(event, string(data))
+				handleReplyImage(event, base64.StdEncoding.EncodeToString(data))
 			}
 		}
 	}
