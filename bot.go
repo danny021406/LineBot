@@ -55,7 +55,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					handleStoreMsg(event, outStickerResult)
 				}
 			case *linebot.ImageMessage:
-				log.Println(message)
+				fmt.Printf("%+v\n", message)
 				handleReplyImage(event, message.PreviewImageURL)
 			}
 		}
