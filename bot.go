@@ -146,7 +146,7 @@ func handleReply(event *linebot.Event, askStr string) {
 
 func handleReplyImage(event *linebot.Event, image string) {
 	// prompt
-	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱讚他長得很好看：")
+	oriContext := fmt.Sprintf("給你一張圖片，針對這張圖片的細節稱讚他長得很好看：請用使用繁體中文回覆")
 	reply := gptGPT3CompleteContextImage(oriContext, image)
 	log.Print(oriContext, image)
 
